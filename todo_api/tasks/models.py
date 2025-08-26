@@ -9,5 +9,7 @@ class Task(models.Model):
     due_date = models.DateField()
     completed = models.BooleanField(default=False)
 
+    owner = models.ForeignKey(User, on_delete=models.CASCADE)
+
     def __str__(self):
         return self.title
