@@ -16,13 +16,17 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from tasks.views import home
+from tasks.views import home, signup
+from django.contrib.auth import views as auth_views
 from rest_framework.authtoken.views import obtain_auth_token
 
 urlpatterns = [
     path("", home, name="home"),
     path("admin/", admin.site.urls),
     path("api/", include("tasks.urls")),
-    path("api/token/", obtain_auth_token, name="api_token_auth"),
+    path("login/", auth_views.LoginView.as_view(template_name="tasks/login.html"), name="login"),
+    path("logout/", auth_views.LogoutView.as_view(), name="logout"),
+    path("signup/", signup, name="signup"),
+     path("api-auth/", include("rest_framework.urls")),
 ]
 
