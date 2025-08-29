@@ -40,8 +40,8 @@ def signup(request):
     if request.method == "POST":
         form = UserCreationForm(request.POST)
         if form.is_valid():
-            form.save()  # create the new user
-            return redirect("login")  # after signup, go to login page
+            form.save()  
+            return redirect("login")  
     else:
         form = UserCreationForm()
     return render(request, "tasks/signup.html", {"form": form})
